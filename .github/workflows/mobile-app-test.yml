@@ -1,4 +1,4 @@
-name: "Test Mobile App"
+name: Test Mobile App
 
 on:
   pull_request:
@@ -6,19 +6,22 @@ on:
       - develop
       - main
     paths:
-      - ".github/workflows/test.yml"
-      - "mobile-app/**"
+      - .github/workflows/test.yml
+      - mobile-app/**
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile-app
     steps:
       - uses: actions/checkout@v4.1.1
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: "mobile-app/.nvmrc"
+          node-version-file: .nvmrc
       - name: Install dependencies
         run: npm ci
       - name: Run ESLint
