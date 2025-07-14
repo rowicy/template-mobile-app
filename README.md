@@ -14,4 +14,6 @@ This is a template for mobile app development using:
 
 This is a template for building APIs using:
 
-- [Go](https://go.dev/) // TODO: 選定して更新
+- [Node.js](https://nodejs.org/) v22.14.0
+- [Express.js](https://expressjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
