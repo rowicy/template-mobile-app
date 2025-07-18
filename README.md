@@ -15,3 +15,17 @@ This is a template for mobile app development using:
 This is a template for building APIs using:
 
 - [Go](https://go.dev/) // TODO: 選定して更新
+
+## [openapi-specifications](./openapi-specifications)
+
+This directory contains OpenAPI specifications swagger files.
+OpenAPI version 3.0 is used for the specifications, and the files are in JSON format.
+
+- [OpenAPI](https://www.openapis.org/)
+- [Swagger](https://swagger.io/)
+
+## [ls-lint](./.ls-lint.yml)
+
+This is a configuration file for [ls-lint](https://ls-lint.org/), a linter for directory structures.  
+GitHub Actions are set up to run ls-lint on pull requests to ensure that the directory structure adheres to the defined rules.  
+For [api](./api) and [mobile-app](./mobile-app) directories, add settings for each directory, as they are ignored except for markdown files.
