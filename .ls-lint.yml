@@ -6,6 +6,7 @@ ls:
       .yml: kebab-case
 
 ignore:
+  - .git
   - .vscode
   - api
   - mobile-app
