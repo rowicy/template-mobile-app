@@ -11,10 +11,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "mock:example": "prism mock ../openapi-specifications/example.swagger.json --port 3001",
+    "gen-schema:example": "openapi-typescript ../openapi-specifications/example.swagger.json -o ./schema/example.d.ts",
     "lint": "expo lint",
+    "lint:fix": "expo lint --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "ls-lint": "npx ls-lint -debug"
+    "ls-lint": "npx ls-lint -debug",
+    "test:ts": "tsc --noEmit"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -34,6 +38,7 @@
     "expo-symbols": "~0.4.5",
     "expo-system-ui": "~5.0.10",
     "expo-web-browser": "~14.2.0",
+    "openapi-fetch": "^0.14.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.5",
@@ -47,11 +52,13 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@ls-lint/ls-lint": "^2.3.1",
+    "@stoplight/prism-cli": "^5.14.2",
     "@types/react": "~19.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
+    "openapi-typescript": "^7.8.0",
     "prettier": "^3.6.2",
     "typescript": "~5.8.3"
   },

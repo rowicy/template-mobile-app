@@ -24,6 +24,8 @@ jobs:
           node-version-file: mobile-app/.nvmrc
       - name: Install dependencies
         run: npm ci
+      - name: Generate API Schema
+        run: npm run gen-schema:example
       - name: Run ls-lint
         uses: ls-lint/action@v2
         with:
@@ -34,3 +36,5 @@ jobs:
         run: npm run lint
       - name: Run Prettier
         run: npm run format:check
+      - name: Run typechecking
+        run: npm run test:ts
