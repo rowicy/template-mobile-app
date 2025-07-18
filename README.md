@@ -19,6 +19,7 @@ This is a template for building APIs using:
 ## [openapi-specifications](./openapi-specifications)
 
 This directory contains OpenAPI specifications swagger files.
+OpenAPI version 3.0 is used for the specifications, and the files are in JSON format.
 
 - [OpenAPI](https://www.openapis.org/)
 - [Swagger](https://swagger.io/)

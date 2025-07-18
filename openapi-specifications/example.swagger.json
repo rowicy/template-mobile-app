@@ -1,105 +1,88 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "example/v1/example.proto",
-    "version": "version not set"
+    "title": "API Title",
+    "version": "1.0"
   },
-  "tags": [
-    {
-      "name": "ExampleService"
-    }
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "servers": [{ "url": "https://api.server.test/v1" }],
   "paths": {
-    "/v1/examples/{id}": {
+    "/example/items": {
       "get": {
-        "operationId": "ExampleService_GetExample",
+        "summary": "Get all items",
+        "operationId": "getItems",
         "responses": {
           "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ExampleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
+            "description": "A list of items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  },
+                  "example": [
+                    { "id": 1, "name": "Sample Item 1", "price": 10.99 },
+                    { "id": 2, "name": "Sample Item 2", "price": 12.49 },
+                    { "id": 3, "name": "Sample Item 3", "price": 8.75 },
+                    { "id": 4, "name": "Sample Item 4", "price": 15.0 },
+                    { "id": 5, "name": "Sample Item 5", "price": 9.99 }
+                  ]
+                }
+              }
             }
           }
-        },
+        }
+      }
+    },
+    "/example/items/{id}": {
+      "get": {
+        "summary": "Get an item by ID",
+        "operationId": "getItemById",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
-        "tags": [
-          "ExampleService"
-        ]
+        "responses": {
+          "200": {
+            "description": "An item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
-  "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/protobufAny"
+  "components": {
+    "schemas": {
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Sample Item"
+          },
+          "price": {
+            "type": "number",
+            "format": "float",
+            "example": 19.99
           }
-        }
-      }
-    },
-    "v1Example": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
         },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ExampleResponse": {
-      "type": "object",
-      "properties": {
-        "example": {
-          "$ref": "#/definitions/v1Example"
-        }
+        "required": ["id", "name", "price"]
       }
     }
   }

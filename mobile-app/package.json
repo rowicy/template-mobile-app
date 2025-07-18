@@ -12,6 +12,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "mock:example": "prism mock ../openapi-specifications/example.swagger.json --port 3001",
+    "gen-schema:example": "openapi-typescript ../openapi-specifications/example.swagger.json -o ./schema/example.d.ts",
     "lint": "expo lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -54,6 +55,7 @@
     "eslint-config-expo": "~9.2.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
+    "openapi-typescript": "^7.8.0",
     "prettier": "^3.6.2",
     "typescript": "~5.8.3"
   },
