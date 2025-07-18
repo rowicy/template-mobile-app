@@ -13,7 +13,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "ls-lint": "npx ls-lint"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@ls-lint/ls-lint": "^2.3.1",
     "@types/react": "~19.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
