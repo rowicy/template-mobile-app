@@ -30,6 +30,7 @@ jobs:
       - name: Run ls-lint
         uses: ls-lint/action@v2
         with:
+          config: ${{ env.WORKING_DIRECTORY }}/.ls-lint.yml
           workdir: ${{ env.WORKING_DIRECTORY }}
           warn: true
           debug: true
