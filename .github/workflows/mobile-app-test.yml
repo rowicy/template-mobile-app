@@ -6,7 +6,7 @@ on:
       - develop
       - main
     paths:
-      - .github/workflows/test.yml
+      - .github/workflows/mobile-app-test.yml
       - mobile-app/**
 
 env:
