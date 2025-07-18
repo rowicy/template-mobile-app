@@ -2,9 +2,6 @@ name: Test Mobile App
 
 on:
   pull_request:
-    branches:
-      - develop
-      - main
     paths:
       - .github/workflows/mobile-app-test.yml
       - mobile-app/**
