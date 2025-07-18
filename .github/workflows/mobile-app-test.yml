@@ -2,11 +2,8 @@ name: Test Mobile App
 
 on:
   pull_request:
-    branches:
-      - develop
-      - main
     paths:
-      - .github/workflows/test.yml
+      - .github/workflows/mobile-app-test.yml
       - mobile-app/**
 
 env:
@@ -33,7 +30,6 @@ jobs:
           config: ${{ env.WORKING_DIRECTORY }}/.ls-lint.yml
           workdir: ${{ env.WORKING_DIRECTORY }}
           debug: true
-          warn: false
       - name: Run ESLint
         run: npm run lint
       - name: Run Prettier
