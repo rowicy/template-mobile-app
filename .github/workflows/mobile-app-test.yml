@@ -32,8 +32,8 @@ jobs:
         with:
           config: ${{ env.WORKING_DIRECTORY }}/.ls-lint.yml
           workdir: ${{ env.WORKING_DIRECTORY }}
-          warn: true
           debug: true
+          warn: false
       - name: Run ESLint
         run: npm run lint
       - name: Run Prettier
