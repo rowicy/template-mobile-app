@@ -14,7 +14,7 @@
     "lint": "expo lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "ls-lint": "npx ls-lint"
+    "ls-lint": "npx ls-lint -warn -debug"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
