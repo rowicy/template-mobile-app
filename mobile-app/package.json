@@ -11,7 +11,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "mock:example": "prism mock ../swagger/example.swagger.json --port 3001",
+    "mock:example": "prism mock ../openapi-specifications/example.swagger.json --port 3001",
     "lint": "expo lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

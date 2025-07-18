@@ -16,7 +16,7 @@ This is a template for building APIs using:
 
 - [Go](https://go.dev/) // TODO: 選定して更新
 
-## [Swagger](./swagger)
+## [openapi-specifications](./openapi-specifications)
 
 This directory contains OpenAPI specifications swagger files.
 
