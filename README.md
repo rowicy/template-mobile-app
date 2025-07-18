@@ -25,6 +25,6 @@ This directory contains OpenAPI specifications swagger files.
 
 ## [ls-lint](./.ls-lint.yml)
 
-This is a configuration file for [ls-lint](https://ls-lint.org/), a linter for directory structures.
-GitHub Actions are set up to run ls-lint on pull requests to ensure that the directory structure adheres to the defined rules.
+This is a configuration file for [ls-lint](https://ls-lint.org/), a linter for directory structures.  
+GitHub Actions are set up to run ls-lint on pull requests to ensure that the directory structure adheres to the defined rules.  
 For [api](./api) and [mobile-app](./mobile-app) directories, add settings for each directory, as they are ignored except for markdown files.
