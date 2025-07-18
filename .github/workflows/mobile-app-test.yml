@@ -9,13 +9,16 @@ on:
       - .github/workflows/test.yml
       - mobile-app/**
 
+env:
+  WORKING_DIRECTORY: mobile-app
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: mobile-app
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     steps:
       - uses: actions/checkout@v4.1.1
       - name: Use Node.js
@@ -25,7 +28,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run ls-lint
-        run: npm run ls-lint
+        uses: ls-lint/action@v2
+        with:
+          config: ${{ env.WORKING_DIRECTORY }}/.ls-lint.yml
+          workdir: ${{ env.WORKING_DIRECTORY }}
+          warn: true
+          debug: true
       - name: Run ESLint
         run: npm run lint
       - name: Run Prettier
