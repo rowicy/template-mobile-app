@@ -15,3 +15,10 @@ This is a template for mobile app development using:
 This is a template for building APIs using:
 
 - [Go](https://go.dev/) // TODO: 選定して更新
+
+## [Swagger](./swagger)
+
+This directory contains OpenAPI specifications swagger files.
+
+- [OpenAPI](https://www.openapis.org/)
+- [Swagger](https://swagger.io/)
