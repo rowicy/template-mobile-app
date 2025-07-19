@@ -10,6 +10,8 @@ ls:
     .tsx: kebab-case
   components:
     .tsx: PascalCase
+    ui:
+      .tsx: kebab-case
   constants:
     .ts: PascalCase
   hooks:
