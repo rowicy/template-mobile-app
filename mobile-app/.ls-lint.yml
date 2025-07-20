@@ -2,20 +2,11 @@ ls:
   dir: kebab-case
   .js: kebab-case
   .ts: kebab-case
+  .tsx: kebab-case
   .png: kebab-case
   .jpg: kebab-case
   .jpeg: kebab-case
   .svg: kebab-case
-  app:
-    .tsx: kebab-case
-  components:
-    .tsx: PascalCase
-    ui:
-      .tsx: kebab-case
-  constants:
-    .ts: PascalCase
-  hooks:
-    .ts: camelCase
 
 ignore:
   - node_modules
