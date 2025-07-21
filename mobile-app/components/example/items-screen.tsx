@@ -4,7 +4,7 @@ import type { components } from "@/schema/example";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Screens } from "./constants";
-import type { Params } from "./types";
+import type { Params } from "./type";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type NavigationProp = NativeStackNavigationProp<
