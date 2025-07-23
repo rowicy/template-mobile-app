@@ -1,78 +1,19 @@
 import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-// @ts-ignore - react-native-maps has TypeScript compatibility issues with strict mode
-import MapView, { Marker, Polyline } from "react-native-maps";
-
-// Sample coordinates for the route
-const tokyoTower = {
-  latitude: 35.6586,
-  longitude: 139.7454,
-  latitudeDelta: 0.05,
-  longitudeDelta: 0.05,
-};
-
-const convenienceStore1 = {
-  latitude: 35.6762,
-  longitude: 139.7654,
-};
-
-const convenienceStore2 = {
-  latitude: 35.6895,
-  longitude: 139.7456,
-};
-
-const tokyoSkytree = {
-  latitude: 35.7101,
-  longitude: 139.8107,
-};
-
-// Route coordinates for the polyline
-const routeCoordinates = [
-  tokyoTower,
-  convenienceStore1,
-  convenienceStore2,
-  tokyoSkytree,
-];
+import { View, StyleSheet, Text } from "react-native";
 
 export default function MapsScreen() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={tokyoTower}>
-        {/* Markers for each location */}
-        <Marker
-          coordinate={tokyoTower}
-          title="Tokyo Tower"
-          description="Starting point"
-          pinColor="green"
-        />
-        <Marker
-          coordinate={convenienceStore1}
-          title="Convenience Store 1"
-          description="First stop"
-          pinColor="blue"
-        />
-        <Marker
-          coordinate={convenienceStore2}
-          title="Convenience Store 2"
-          description="Second stop"
-          pinColor="blue"
-        />
-        <Marker
-          coordinate={tokyoSkytree}
-          title="Tokyo Skytree"
-          description="Final destination"
-          pinColor="red"
-        />
-
-        {/* Route polyline */}
-        <Polyline
-          coordinates={routeCoordinates}
-          strokeColor="#FF6B6B"
-          strokeWidth={3}
-          lineCap="round"
-          lineJoin="round"
-        />
-      </MapView>
+      <Text style={styles.text}>
+        Map functionality is available on mobile platforms.
+      </Text>
+      <Text style={styles.subtitle}>
+        This feature uses react-native-maps which requires iOS or Android.
+      </Text>
+      <Text style={styles.routeInfo}>
+        Sample route: Tokyo Tower → Convenience Store 1 → Convenience Store 2 →
+        Tokyo Skytree
+      </Text>
     </View>
   );
 }
@@ -80,9 +21,25 @@ export default function MapsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 20,
+    opacity: 0.7,
+  },
+  routeInfo: {
+    fontSize: 12,
+    textAlign: "center",
+    fontStyle: "italic",
+    opacity: 0.6,
   },
 });
