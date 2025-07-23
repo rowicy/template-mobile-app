@@ -14,7 +14,8 @@ This is a template for mobile app development using:
 
 This is a template for building APIs using:
 
-- [Go](https://go.dev/) // TODO: 選定して更新
+- [Go](https://go.dev/) with [Gin](https://gin-gonic.com/) framework
+- [gin-swagger](https://github.com/swaggo/gin-swagger) for OpenAPI/Swagger generation
 
 ## [openapi-specifications](./openapi-specifications)
 
