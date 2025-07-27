@@ -38,20 +38,32 @@ export default function ItemDetailsScreen({ route }: ItemDetailsScreenProps) {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <Text style={{ padding: 20, color: "red", fontSize: 18 }}>
-          <dl>
-            <dt>ID:</dt>
-            <dd>{item?.id}</dd>
-          </dl>
-          <dl>
-            <dt>Name:</dt>
-            <dd>{item?.name}</dd>
-          </dl>
-          <dl>
-            <dt>Price:</dt>
-            <dd>{item?.price}</dd>
-          </dl>
-        </Text>
+        <View style={{ padding: 20 }}>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              ID:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.id}
+            </Text>
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              Name:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.name}
+            </Text>
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              Price:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.price}
+            </Text>
+          </View>
+        </View>
       )}
 
       <Text
