@@ -1,6 +1,4 @@
-import { client } from "@/api-client/example";
-import { useCallback, useEffect, useState } from "react";
-import type { components } from "@/schema/example";
+import { $api } from "@/api-client/example";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Screens } from "./constants";
@@ -15,24 +13,8 @@ type NavigationProp = NativeStackNavigationProp<
 export default function ItemsScreen() {
   const navigation = useNavigation<NavigationProp>();
 
-  const [isLoading, setLoading] = useState(true);
-  const [items, setItems] = useState<
-    components["schemas"]["Item"][] | undefined
-  >(undefined);
-
-  const getExampleItems = useCallback(async () => {
-    try {
-      const response = await client.GET("/example/items");
-      setItems(response.data);
-    } catch (error) {
-      console.error("Error fetching example items:", error);
-    }
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    getExampleItems();
-  }, [getExampleItems]);
+  // Use TanStack Query hook for fetching items
+  const { data: items, isLoading } = $api.useQuery("get", "/example/items");
 
   const handleItemPress = (id: string) => {
     navigation.navigate(Screens.ItemDetails, { id });
