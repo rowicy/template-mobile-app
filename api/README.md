@@ -12,6 +12,7 @@ This is a template API implementation using Go and the Gin framework, with autom
 
 - RESTful API endpoints
 - Automatic Swagger/OpenAPI documentation
+- **Pure Go OpenAPI 3.0.3 generation** (no npm dependencies)
 - CORS support
 - Health check endpoint
 - Example integration with external API (JSONPlaceholder)
@@ -48,23 +49,30 @@ This is a template API implementation using Go and the Gin framework, with autom
 
 ### Running the API
 
-**Option 1: Quick start with OpenAPI 3.0.3 (Recommended)**
+**Option 1: OpenAPI 3.0.3 with Pure Go (Recommended)**
 
-1. Generate OpenAPI 3.0.3 documentation (automated):
+1. Generate OpenAPI 3.0.3 documentation using only Go packages:
+   ```bash
+   ./generate-openapi-go.sh
+   ```
+
+**Option 2: OpenAPI 3.0.3 with npm dependencies**
+
+1. Generate OpenAPI 3.0.3 documentation (requires npm):
    ```bash
    ./generate-openapi.sh
    ```
 
-**Option 2: Manual generation**
+**Option 3: Basic Swagger 2.0 generation**
 
-1. Generate Swagger documentation:
+1. Generate Swagger 2.0 documentation:
    ```bash
    # Make sure swag is in PATH
    export PATH=$PATH:$(go env GOPATH)/bin
    swag init
    ```
 
-   Note: This generates Swagger 2.0 by default. Use Option 1 for OpenAPI 3.0.3.
+   Note: This generates Swagger 2.0 by default. Use Option 1 for OpenAPI 3.0.3 with Go-only packages.
 
 2. Start the server:
    ```bash
@@ -87,11 +95,23 @@ The API automatically generates OpenAPI/Swagger documentation which is:
 - Served at `/swagger/index.html` when the server is running
 - Generated as JSON file in `docs/swagger.json`
 - Copied to `../openapi-specifications/api.swagger.json`
+- **Available in OpenAPI 3.0.3 format using pure Go packages** (no npm required)
 
 ### Development
 
-To regenerate Swagger documentation after making changes:
+To regenerate OpenAPI 3.0.3 documentation after making changes:
 
+**Using Go-only packages (Recommended):**
+```bash
+./generate-openapi-go.sh
+```
+
+**Using npm packages:**
+```bash
+./generate-openapi.sh
+```
+
+**Manual Swagger 2.0 generation:**
 ```bash
 swag init
 cp docs/swagger.json ../openapi-specifications/api.swagger.json

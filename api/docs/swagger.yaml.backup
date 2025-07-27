@@ -1,0 +1,108 @@
+basePath: /api/v1
+definitions:
+  main.ErrorResponse:
+    properties:
+      error:
+        example: Internal server error
+        type: string
+      message:
+        example: Failed to fetch data
+        type: string
+    type: object
+  main.PostResponse:
+    properties:
+      body:
+        example: Sample post body content
+        type: string
+      formattedAt:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+      id:
+        example: 1
+        type: integer
+      title:
+        example: Sample Post Title
+        type: string
+      userId:
+        example: 1
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a template API server using Go Gin framework
+  title: Template Mobile App API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Returns the health status of the API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Health check endpoint
+      tags:
+      - health
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Fetch all posts from JSONPlaceholder API and return formatted response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.PostResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: Get all posts from JSONPlaceholder
+      tags:
+      - posts
+  /posts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Fetch a specific post by ID from JSONPlaceholder API and return
+        formatted response
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.PostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: Get a post by ID from JSONPlaceholder
+      tags:
+      - posts
+swagger: "2.0"
