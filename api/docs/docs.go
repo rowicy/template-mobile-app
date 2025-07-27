@@ -174,6 +174,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "This is a template API server using Go Gin framework",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {
