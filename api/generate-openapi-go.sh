@@ -33,8 +33,6 @@ go run cmd/openapi-generator/main.go docs/swagger.json
 
 # Replace original files with OpenAPI 3.0.3 versions
 echo "🔄 Updating files..."
-cp docs/swagger.json docs/swagger.json.backup
-cp docs/swagger.yaml docs/swagger.yaml.backup
 cp docs/openapi3.json docs/swagger.json
 cp docs/openapi3.yaml docs/swagger.yaml
 
@@ -49,6 +47,12 @@ sed -i '/RightDelim:/d' docs/docs.go
 
 # Update openapi-specifications directory
 cp docs/openapi3.json ../openapi-specifications/api.swagger.json
+
+# Clean up temporary and backup files
+echo "🧹 Cleaning up temporary files..."
+rm -f docs/openapi3.json docs/openapi3.yaml
+rm -f docs/*.backup
+rm -f ../openapi-specifications/*.backup
 
 echo "✅ OpenAPI 3.0.3 documentation generated successfully using Go packages!"
 echo "📁 Files updated:"
