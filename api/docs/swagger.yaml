@@ -1,165 +1,108 @@
-openapi: 3.0.3
+basePath: /api/v1
+definitions:
+  main.ErrorResponse:
+    properties:
+      error:
+        example: Internal server error
+        type: string
+      message:
+        example: Failed to fetch data
+        type: string
+    type: object
+  main.PostResponse:
+    properties:
+      body:
+        example: Sample post body content
+        type: string
+      formattedAt:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+      id:
+        example: 1
+        type: integer
+      title:
+        example: Sample Post Title
+        type: string
+      userId:
+        example: 1
+        type: integer
+    type: object
+host: localhost:8080
 info:
-    title: Template Mobile App API
-    description: This is a template API server using Go Gin framework
-    version: "1.0"
-    contact: {}
-servers:
-    - url: http://localhost:8080/api/v1
-      description: Http server
+  contact: {}
+  description: This is a template API server using Go Gin framework
+  title: Template Mobile App API
+  version: "1.0"
 paths:
-    /health:
-        get:
-            tags:
-                - health
-            summary: Health check endpoint
-            description: Returns the health status of the API
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                additionalProperties: true
-                            examples:
-                                health_response:
-                                    summary: Health check response
-                                    value:
-                                        service: template-mobile-app-api
-                                        status: healthy
-                                        timestamp: "2024-01-01T12:00:00Z"
-                                        version: 1.0.0
-    /posts:
-        get:
-            tags:
-                - posts
-            summary: Get all posts from JSONPlaceholder
-            description: Fetch all posts from JSONPlaceholder API and return formatted response
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: '#/definitions/main.PostResponse'
-                            examples:
-                                posts_list:
-                                    summary: List of posts
-                                    value:
-                                        - body: This is the content of the first post
-                                          formattedAt: "2024-01-01T12:00:00Z"
-                                          id: 1
-                                          title: First Post Title
-                                          userId: 1
-                                        - body: This is the content of the second post
-                                          formattedAt: "2024-01-01T12:00:00Z"
-                                          id: 2
-                                          title: Second Post Title
-                                          userId: 2
-                "500":
-                    description: Internal Server Error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/definitions/main.ErrorResponse'
-                            examples:
-                                error_response:
-                                    summary: Error response
-                                    value:
-                                        error: Internal server error
-                                        message: Failed to fetch data
-    /posts/{id}:
-        get:
-            tags:
-                - posts
-            summary: Get a post by ID from JSONPlaceholder
-            description: Fetch a specific post by ID from JSONPlaceholder API and return formatted response
-            parameters:
-                - name: id
-                  in: path
-                  description: Post ID
-                  required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/definitions/main.PostResponse'
-                            examples:
-                                single_post:
-                                    summary: Single post response
-                                    value:
-                                        body: Sample post body content
-                                        formattedAt: "2024-01-01T12:00:00Z"
-                                        id: 1
-                                        title: Sample Post Title
-                                        userId: 1
-                "400":
-                    description: Bad Request
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/definitions/main.ErrorResponse'
-                            examples:
-                                error_response:
-                                    summary: Error response
-                                    value:
-                                        error: Internal server error
-                                        message: Failed to fetch data
-                "404":
-                    description: Not Found
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/definitions/main.ErrorResponse'
-                            examples:
-                                error_response:
-                                    summary: Error response
-                                    value:
-                                        error: Internal server error
-                                        message: Failed to fetch data
-                "500":
-                    description: Internal Server Error
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/definitions/main.ErrorResponse'
-                            examples:
-                                error_response:
-                                    summary: Error response
-                                    value:
-                                        error: Internal server error
-                                        message: Failed to fetch data
-components:
-    schemas:
-        main.ErrorResponse:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Returns the health status of the API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
             type: object
-            properties:
-                error:
-                    type: string
-                    example: Internal server error
-                message:
-                    type: string
-                    example: Failed to fetch data
-        main.PostResponse:
-            type: object
-            properties:
-                body:
-                    type: string
-                    example: Sample post body content
-                formattedAt:
-                    type: string
-                    example: "2024-01-01T12:00:00Z"
-                id:
-                    type: integer
-                    example: 1
-                title:
-                    type: string
-                    example: Sample Post Title
-                userId:
-                    type: integer
-                    example: 1
+      summary: Health check endpoint
+      tags:
+      - health
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Fetch all posts from JSONPlaceholder API and return formatted response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.PostResponse'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: Get all posts from JSONPlaceholder
+      tags:
+      - posts
+  /posts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Fetch a specific post by ID from JSONPlaceholder API and return
+        formatted response
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.PostResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: Get a post by ID from JSONPlaceholder
+      tags:
+      - posts
+swagger: "2.0"

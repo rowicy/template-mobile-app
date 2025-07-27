@@ -49,30 +49,12 @@ This is a template API implementation using Go and the Gin framework, with autom
 
 ### Running the API
 
-**Option 1: OpenAPI 3.0.3 with Pure Go (Recommended)**
-
-1. Generate OpenAPI 3.0.3 documentation using only Go packages:
-   ```bash
-   ./generate-openapi-go.sh
-   ```
-
-**Option 2: OpenAPI 3.0.3 with npm dependencies**
-
-1. Generate OpenAPI 3.0.3 documentation (requires npm):
-   ```bash
-   ./generate-openapi.sh
-   ```
-
-**Option 3: Basic Swagger 2.0 generation**
-
 1. Generate Swagger 2.0 documentation:
    ```bash
    # Make sure swag is in PATH
    export PATH=$PATH:$(go env GOPATH)/bin
    swag init
    ```
-
-   Note: This generates Swagger 2.0 by default. Use Option 1 for OpenAPI 3.0.3 with Go-only packages.
 
 2. Start the server:
    ```bash
