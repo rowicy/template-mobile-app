@@ -25,7 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Generate API Schema
-        run: npm run gen-schema:example
+        run: |
+          npm run gen-schema:example
+          npm run gen-schema
       - name: Run ls-lint
         uses: ls-lint/action@v2
         with:

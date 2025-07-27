@@ -22,6 +22,13 @@ export default function ItemsScreen() {
 
   return (
     <View style={{ flex: 1, padding: 24 }}>
+      <Text
+        style={{ fontSize: 18, color: "blue" }}
+        onPress={() => navigation.navigate(Screens.ApiHealth)}
+      >
+        API Health Check
+      </Text>
+
       {isLoading ? (
         <ActivityIndicator />
       ) : (
