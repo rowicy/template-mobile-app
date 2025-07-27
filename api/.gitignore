@@ -36,3 +36,6 @@ Thumbs.db
 # Application specific
 main
 *.log
+
+# generated files
+docs
