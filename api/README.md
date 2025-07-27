@@ -65,6 +65,7 @@ The API will be available at `http://localhost:8080`
 ### Swagger Documentation
 
 The API automatically generates OpenAPI/Swagger documentation which is:
+
 - Served at `/swagger/index.html` when the server is running
 - Generated as JSON file in `docs/swagger.json`
 - Copied to `../openapi-specifications/api.swagger.json`
@@ -72,6 +73,7 @@ The API automatically generates OpenAPI/Swagger documentation which is:
 ### Development
 
 To regenerate Swagger documentation after making changes:
+
 ```bash
 swag init
 cp docs/swagger.json ../openapi-specifications/api.swagger.json
