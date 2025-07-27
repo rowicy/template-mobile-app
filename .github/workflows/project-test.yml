@@ -1,10 +1,7 @@
-name: Test API and Project
+name: Test Project
 
 on:
   pull_request:
-    paths-ignore:
-      - api/**
-      - mobile-app/**
 
 jobs:
   test:
