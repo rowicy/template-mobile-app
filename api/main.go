@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 
 	_ "template-mobile-app-api/docs"
 )
@@ -118,7 +118,7 @@ func getPosts(c *gin.Context) {
 	// Format the response
 	var formattedPosts []PostResponse
 	now := time.Now().Format(time.RFC3339)
-	
+
 	for _, post := range posts {
 		formattedPosts = append(formattedPosts, PostResponse{
 			ID:          post.ID,

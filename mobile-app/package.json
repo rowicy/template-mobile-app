@@ -12,7 +12,7 @@
     "ios": "DARK_MODE=media expo start --ios",
     "web": "DARK_MODE=media expo start --web",
     "mock:example": "prism mock ../openapi-specifications/example.swagger.json --port 3001",
-    "mock": "prism mock ../openapi-specifications/api.swagger.json --port 3001",
+    "mock": "prism mock ../openapi-specifications/api.swagger.json --port 8080",
     "gen-schema:example": "openapi-typescript ../openapi-specifications/example.swagger.json -o ./schema/example.d.ts",
     "gen-schema": "openapi-typescript ../openapi-specifications/api.swagger.json -o ./schema/api.d.ts",
     "lint": "expo lint",

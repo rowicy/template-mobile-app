@@ -78,6 +78,7 @@ The API automatically generates OpenAPI/Swagger documentation through the follow
 3. **Output**: Final specification is placed in `../openapi-specifications/api.swagger.json`
 
 The documentation is:
+
 - Served at `/swagger/index.html` when the server is running (Swagger 2.0 format)
 - Available as OpenAPI 3.0.3 in `../openapi-specifications/api.swagger.json` for tooling
 
@@ -86,18 +87,21 @@ The documentation is:
 To regenerate OpenAPI 3.0.3 documentation after making changes:
 
 **Complete workflow (Recommended):**
+
 ```bash
 # From repository root
 ./generate-openapi.sh
 ```
 
 This script will:
+
 1. Run `swag init` to generate Swagger 2.0 documentation in `api/docs/`
 2. Convert Swagger 2.0 to OpenAPI 3.0.3 format using a Go converter
 3. Place the result in `openapi-specifications/api.swagger.json`
 4. Test that `npm run gen-schema` and `npm run mock` work correctly
 
 **Manual steps:**
+
 ```bash
 # 1. Generate Swagger 2.0
 cd api && swag init && cd ..
