@@ -1,4 +1,4 @@
-name: Test Project
+name: Test API and Project
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'mobile-app/.nvmrc'
+          node-version-file: mobile-app/.nvmrc
           
       - name: Test OpenAPI generation workflow
         run: |
