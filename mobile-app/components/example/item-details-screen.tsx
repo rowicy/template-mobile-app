@@ -1,6 +1,4 @@
-import { client } from "@/api-client/example";
-import { useCallback, useEffect, useState } from "react";
-import type { components } from "@/schema/example";
+import { $api } from "@/api-client/example";
 import { ActivityIndicator, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Screens } from "./constants";
@@ -22,49 +20,50 @@ type ItemDetailsScreenProps = NativeStackScreenProps<
 
 export default function ItemDetailsScreen({ route }: ItemDetailsScreenProps) {
   const navigation = useNavigation<NavigationProp>();
-  const [isLoading, setLoading] = useState(true);
-  const [item, setItem] = useState<components["schemas"]["Item"] | undefined>(
-    undefined,
+
+  // Use TanStack Query hook for fetching item by ID
+  const { data: item, isLoading } = $api.useQuery(
+    "get",
+    "/example/items/{id}",
+    {
+      params: { path: { id: route.params?.id || "" } },
+    },
+    {
+      enabled: !!route.params?.id, // Only run query if ID is available
+    },
   );
-
-  const getExampleItemById = useCallback(async (id: string) => {
-    try {
-      const response = await client.GET("/example/items/{id}", {
-        params: { path: { id } },
-      });
-      setItem(response.data);
-    } catch (error) {
-      console.error("Error fetching example item by ID:", error);
-    }
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    if (route.params?.id) {
-      console.log("Fetching item with ID:", route.params.id);
-      getExampleItemById(route.params.id);
-    }
-  }, [route, getExampleItemById]);
 
   return (
     <View>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <Text style={{ padding: 20, color: "red", fontSize: 18 }}>
-          <dl>
-            <dt>ID:</dt>
-            <dd>{item?.id}</dd>
-          </dl>
-          <dl>
-            <dt>Name:</dt>
-            <dd>{item?.name}</dd>
-          </dl>
-          <dl>
-            <dt>Price:</dt>
-            <dd>{item?.price}</dd>
-          </dl>
-        </Text>
+        <View style={{ padding: 20 }}>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              ID:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.id}
+            </Text>
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              Name:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.name}
+            </Text>
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ color: "red", fontSize: 18, fontWeight: "bold" }}>
+              Price:
+            </Text>
+            <Text style={{ color: "red", fontSize: 18, marginLeft: 10 }}>
+              {item?.price}
+            </Text>
+          </View>
+        </View>
       )}
 
       <Text
