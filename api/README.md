@@ -41,12 +41,30 @@ This is a template API implementation using Go and the Gin framework, with autom
    go install github.com/swaggo/swag/cmd/swag@latest
    ```
 
+4. Ensure swag is in your PATH (add this to your shell profile if needed):
+   ```bash
+   export PATH=$PATH:$(go env GOPATH)/bin
+   ```
+
 ### Running the API
+
+**Option 1: Quick start with OpenAPI 3.0.3 (Recommended)**
+
+1. Generate OpenAPI 3.0.3 documentation (automated):
+   ```bash
+   ./generate-openapi.sh
+   ```
+
+**Option 2: Manual generation**
 
 1. Generate Swagger documentation:
    ```bash
+   # Make sure swag is in PATH
+   export PATH=$PATH:$(go env GOPATH)/bin
    swag init
    ```
+
+   Note: This generates Swagger 2.0 by default. Use Option 1 for OpenAPI 3.0.3.
 
 2. Start the server:
    ```bash
