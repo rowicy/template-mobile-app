@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator<Params>();
 
 export default function Example() {
   return (
-    <Stack.Navigator initialRouteName={Screens.Items}>
+    <Stack.Navigator id={undefined} initialRouteName={Screens.Items}>
       <Stack.Screen name={Screens.Items} component={ItemsScreen} />
       <Stack.Screen name={Screens.ItemDetails} component={ItemDetailsScreen} />
     </Stack.Navigator>
