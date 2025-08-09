@@ -8,7 +8,8 @@ export default function MapsScreen() {
         Map functionality is available on mobile platforms.
       </Text>
       <Text style={styles.subtitle}>
-        This feature uses react-native-maps which requires iOS or Android.
+        This feature uses OpenStreetMap with react-native-maps which requires
+        iOS or Android.
       </Text>
       <Text style={styles.routeInfo}>
         Sample route: Tokyo Tower → Convenience Store 1 → Convenience Store 2 →
