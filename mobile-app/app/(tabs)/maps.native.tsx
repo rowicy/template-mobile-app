@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 // @ts-ignore - react-native-maps has TypeScript compatibility issues with strict mode
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { UrlTile, Marker, Polyline } from "react-native-maps";
 
 // Sample coordinates for the route
 const tokyoTower = {
@@ -38,6 +38,13 @@ export default function MapsScreen() {
   return (
     <View style={styles.container}>
       <MapView style={styles.map} initialRegion={tokyoTower}>
+        {/* OpenStreetMap tile layer */}
+        <UrlTile
+          urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maximumZ={19}
+          minimumZ={1}
+        />
+
         {/* Markers for each location */}
         <Marker
           coordinate={tokyoTower}
