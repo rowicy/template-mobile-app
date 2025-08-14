@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 // @ts-ignore - react-native-maps has TypeScript compatibility issues with strict mode
 import MapView, { UrlTile, Marker, Polyline } from "react-native-maps";
+import { useCurrentLocation } from "@/hooks/use-location";
 
 // Sample coordinates for the route
 const tokyoTower = {
@@ -35,15 +36,41 @@ const routeCoordinates = [
 ];
 
 export default function MapsScreen() {
+  // Use TanStack Query hook for fetching current location
+  const { data: currentLocation } = useCurrentLocation();
+
+  // Determine initial region - use current location if available, otherwise default to Tokyo Tower
+  const initialRegion = currentLocation
+    ? {
+        latitude: currentLocation.latitude,
+        longitude: currentLocation.longitude,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      }
+    : tokyoTower;
+
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={tokyoTower}>
+      <MapView style={styles.map} initialRegion={initialRegion}>
         {/* OpenStreetMap tile layer */}
         <UrlTile
           urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maximumZ={19}
           minimumZ={1}
         />
+
+        {/* Current location marker - only show if location is available */}
+        {currentLocation && (
+          <Marker
+            coordinate={{
+              latitude: currentLocation.latitude,
+              longitude: currentLocation.longitude,
+            }}
+            title="現在地"
+            description="Your current location"
+            pinColor="orange"
+          />
+        )}
 
         {/* Markers for each location */}
         <Marker
