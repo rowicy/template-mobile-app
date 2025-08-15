@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import React, { useEffect, useMemo, useRef } from "react";
+import { View, StyleSheet, Dimensions, ActivityIndicator } from "react-native";
 // @ts-ignore - react-native-maps has TypeScript compatibility issues with strict mode
 import MapView, { UrlTile, Marker, Polyline } from "react-native-maps";
 import { useCurrentLocation } from "@/hooks/use-location";
@@ -27,17 +27,10 @@ const tokyoSkytree = {
   longitude: 139.8107,
 };
 
-// Route coordinates for the polyline
-const routeCoordinates = [
-  tokyoTower,
-  convenienceStore1,
-  convenienceStore2,
-  tokyoSkytree,
-];
-
 export default function MapsScreen() {
   // Use TanStack Query hook for fetching current location
-  const { data: currentLocation } = useCurrentLocation();
+  const { data: currentLocation, isLoading } = useCurrentLocation();
+  const mapRef = useRef<MapView>(null);
 
   // Determine initial region - use current location if available, otherwise default to Tokyo Tower
   const initialRegion = currentLocation
@@ -49,9 +42,43 @@ export default function MapsScreen() {
       }
     : tokyoTower;
 
+  const routeCoordinates = useMemo(() => {
+    if (currentLocation) {
+      return [
+        {
+          latitude: currentLocation.latitude,
+          longitude: currentLocation.longitude,
+        },
+        tokyoTower,
+        convenienceStore1,
+        convenienceStore2,
+        tokyoSkytree,
+      ];
+    }
+    return [tokyoTower, convenienceStore1, convenienceStore2, tokyoSkytree];
+  }, [currentLocation]);
+
+  useEffect(() => {
+    if (currentLocation && mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: currentLocation.latitude,
+          longitude: currentLocation.longitude,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        },
+        1000,
+      ); // 1秒でアニメーション
+    }
+  }, [currentLocation]);
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={initialRegion}>
+      <MapView ref={mapRef} style={styles.map} initialRegion={initialRegion}>
         {/* OpenStreetMap tile layer */}
         <UrlTile
           urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
