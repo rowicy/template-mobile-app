@@ -72,76 +72,73 @@ export default function MapsScreen() {
     }
   }, [currentLocation]);
 
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
-
   return (
-    <View style={styles.container}>
-      <MapView ref={mapRef} style={styles.map} initialRegion={initialRegion}>
-        {/* OpenStreetMap tile layer */}
-        <UrlTile
-          urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          maximumZ={19}
-          minimumZ={1}
-        />
-
-        {/* Current location marker - only show if location is available */}
-        {currentLocation && (
-          <Marker
-            coordinate={{
-              latitude: currentLocation.latitude,
-              longitude: currentLocation.longitude,
-            }}
-            title="現在地"
-            description="Your current location"
-            pinColor="orange"
+    <View className="flex-1 min-h-full flex items-center justify-center">
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <MapView ref={mapRef} style={styles.map} initialRegion={initialRegion}>
+          {/* OpenStreetMap tile layer */}
+          <UrlTile
+            urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maximumZ={19}
+            minimumZ={1}
           />
-        )}
 
-        {/* Markers for each location */}
-        <Marker
-          coordinate={tokyoTower}
-          title="Tokyo Tower"
-          description="Starting point"
-          pinColor="green"
-        />
-        <Marker
-          coordinate={convenienceStore1}
-          title="Convenience Store 1"
-          description="First stop"
-          pinColor="blue"
-        />
-        <Marker
-          coordinate={convenienceStore2}
-          title="Convenience Store 2"
-          description="Second stop"
-          pinColor="blue"
-        />
-        <Marker
-          coordinate={tokyoSkytree}
-          title="Tokyo Skytree"
-          description="Final destination"
-          pinColor="red"
-        />
+          {/* Current location marker - only show if location is available */}
+          {currentLocation && (
+            <Marker
+              coordinate={{
+                latitude: currentLocation.latitude,
+                longitude: currentLocation.longitude,
+              }}
+              title="現在地"
+              description="Your current location"
+              pinColor="orange"
+            />
+          )}
 
-        {/* Route polyline */}
-        <Polyline
-          coordinates={routeCoordinates}
-          strokeColor="#FF6B6B"
-          strokeWidth={3}
-          lineCap="round"
-          lineJoin="round"
-        />
-      </MapView>
+          {/* Markers for each location */}
+          <Marker
+            coordinate={tokyoTower}
+            title="Tokyo Tower"
+            description="Starting point"
+            pinColor="green"
+          />
+          <Marker
+            coordinate={convenienceStore1}
+            title="Convenience Store 1"
+            description="First stop"
+            pinColor="blue"
+          />
+          <Marker
+            coordinate={convenienceStore2}
+            title="Convenience Store 2"
+            description="Second stop"
+            pinColor="blue"
+          />
+          <Marker
+            coordinate={tokyoSkytree}
+            title="Tokyo Skytree"
+            description="Final destination"
+            pinColor="red"
+          />
+
+          {/* Route polyline */}
+          <Polyline
+            coordinates={routeCoordinates}
+            strokeColor="#FF6B6B"
+            strokeWidth={3}
+            lineCap="round"
+            lineJoin="round"
+          />
+        </MapView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
